@@ -5,10 +5,10 @@ except ImportError:
 
 
 setup(
-    name='flask_project',
-    version='1.0.0',
-    long_description=open('README.md').read(),
-    long_description_content_type='text/markdown',
+    name="flask_project",
+    version="1.0.0",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     install_requires=[
         "Click==7.0",
         "Flask==1.1.2",
@@ -19,5 +19,5 @@ setup(
         "MarkupSafe==1.1.1",
         "SQLAlchemy==1.3.22",
         "Werkzeug==1.0.1",
-                      ],
+    ],
 )
