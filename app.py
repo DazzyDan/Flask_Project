@@ -34,6 +34,30 @@ def index():
         tasks = Todo.query.order_by(Todo.date_created).all()
         #No need to precise the path, it will find the file under templates folder
         return render_template('index.html', tasks = tasks)
+    
+# add delete function
+@app.route('/delete/<int:id>')
+def delete(id):
+    task_to_delete = Todo.query.get_or_404(id)
+    try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "Error happens during deleting"
+# add update function
+@app.route('/update/<int:id>', methods=['POST', 'GET'])
+def update(id):
+    task_to_update = Todo.query.get_or_404(id)
+    if request.method == 'POST':
+        task_to_update.content = request.form['content']
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "Error happens during updating"
+    else:
+        return render_template('update.html', task = task_to_update)
 
 if __name__ == "__main__":
     app.run(debug=True)
